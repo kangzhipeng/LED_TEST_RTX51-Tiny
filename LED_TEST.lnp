@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"LED_TEST.obj",
+"Conf_tny.obj" 
+TO "LED_TEST" Rtx51Tiny 

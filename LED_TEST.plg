@@ -1,0 +1,225 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\08-Learning\C-Code\LED TEST RTX51-Tiny\LED_TEST.uvproj
+Project File Date:  03/03/2015
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  MAIN
+    MODULE:  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+    ADDRESS: 0010H
+Program Size: data=9.0 xdata=0 code=144
+"LED_TEST" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(3): error C141: syntax error near ''
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+assembling Conf_tny.A51...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 0033H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 0040H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 00A1H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 00C2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 00E1H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 0153H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 015DH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?RTX_MAXTASKN
+    MODULE:  Conf_tny.obj (?RTX51_TINY_KERNAL)
+    ADDRESS: 018AH
+Program Size: data=18.2 xdata=0 code=401
+"LED_TEST" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(4): error C132: '_Task_0': not in formal parameter list
+LED_TEST.C(4): error C141: syntax error near '{'
+LED_TEST.C(5): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(6): error C141: syntax error near '1'
+LED_TEST.C(6): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(7): error C141: syntax error near '2'
+LED_TEST.C(7): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(9): error C141: syntax error near '}'
+LED_TEST.C(10): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(10): error C141: syntax error near '1'
+LED_TEST.C(12): error C132: 'Os_wait': not in formal parameter list
+LED_TEST.C(13): error C141: syntax error near '}'
+LED_TEST.C(14): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(14): error C141: syntax error near '2'
+LED_TEST.C(16): error C132: 'Os_wait': not in formal parameter list
+LED_TEST.C(17): error C141: syntax error near '}'
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(4): error C132: '_Task_0': not in formal parameter list
+LED_TEST.C(4): error C141: syntax error near '{'
+LED_TEST.C(5): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(6): error C141: syntax error near '1'
+LED_TEST.C(6): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(7): error C141: syntax error near '2'
+LED_TEST.C(7): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(9): error C141: syntax error near '}'
+LED_TEST.C(10): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(10): error C141: syntax error near '1'
+LED_TEST.C(12): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(13): error C141: syntax error near '}'
+LED_TEST.C(14): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(14): error C141: syntax error near '2'
+LED_TEST.C(16): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(17): error C141: syntax error near '}'
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(4): error C132: '_Task_0': not in formal parameter list
+LED_TEST.C(4): error C141: syntax error near '{'
+LED_TEST.C(5): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(6): error C141: syntax error near '1'
+LED_TEST.C(6): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(7): error C141: syntax error near '2'
+LED_TEST.C(7): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(9): error C141: syntax error near '}'
+LED_TEST.C(10): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(10): error C141: syntax error near '1'
+LED_TEST.C(12): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(13): error C141: syntax error near '}'
+LED_TEST.C(14): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(14): error C141: syntax error near '2'
+LED_TEST.C(16): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(17): error C141: syntax error near '}'
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(4): error C132: '_Task_0': not in formal parameter list
+LED_TEST.C(4): error C141: syntax error near '{'
+LED_TEST.C(5): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(6): error C141: syntax error near '1'
+LED_TEST.C(6): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(7): error C141: syntax error near '2'
+LED_TEST.C(7): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(9): error C141: syntax error near '}'
+LED_TEST.C(10): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(10): error C141: syntax error near '1'
+LED_TEST.C(12): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(13): error C141: syntax error near '}'
+LED_TEST.C(14): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(14): error C141: syntax error near '2'
+LED_TEST.C(16): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(17): error C141: syntax error near '}'
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(3): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(3): error C141: syntax error near '0'
+LED_TEST.C(5): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(6): error C141: syntax error near '1'
+LED_TEST.C(6): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(7): error C141: syntax error near '2'
+LED_TEST.C(7): error C132: 'os_creat_': not in formal parameter list
+LED_TEST.C(9): error C141: syntax error near '}'
+LED_TEST.C(10): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(10): error C141: syntax error near '1'
+LED_TEST.C(12): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(13): error C141: syntax error near '}'
+LED_TEST.C(14): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(14): error C141: syntax error near '2'
+LED_TEST.C(16): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(17): error C141: syntax error near '}'
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(6): warning C206: 'os_creat_task': missing function-prototype
+LED_TEST.C(6): error C267: 'os_creat_task': requires ANSI-style prototype
+LED_TEST.C(10): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(10): error C141: syntax error near '1'
+LED_TEST.C(12): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(13): error C141: syntax error near '}'
+LED_TEST.C(14): error C132: '_Task_': not in formal parameter list
+LED_TEST.C(14): error C141: syntax error near '2'
+LED_TEST.C(16): error C132: 'os_wait': not in formal parameter list
+LED_TEST.C(17): error C141: syntax error near '}'
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+LED_TEST.C(6): warning C206: 'os_creat_task': missing function-prototype
+LED_TEST.C(6): error C267: 'os_creat_task': requires ANSI-style prototype
+assembling Conf_tny.A51...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+assembling Conf_tny.A51...
+linking...
+Program Size: data=24.2 xdata=0 code=667
+"LED_TEST" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+assembling Conf_tny.A51...
+linking...
+Program Size: data=24.2 xdata=0 code=808
+"LED_TEST" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+assembling Conf_tny.A51...
+linking...
+Program Size: data=23.1 xdata=0 code=717
+"LED_TEST" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_TEST.C...
+assembling Conf_tny.A51...
+linking...
+Program Size: data=23.1 xdata=0 code=717
+"LED_TEST" - 0 Error(s), 0 Warning(s).
