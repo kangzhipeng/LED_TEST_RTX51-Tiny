@@ -1,0 +1,119 @@
+C51 COMPILER V9.00   LED                                                                   03/03/2015 20:24:34 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN .\OUT\led.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE DEV\led.c ROM(SMALL) BROWSE DEBUG OBJECTEXTEND PRINT(.\led.lst) OBJECT(.\OU
+                    -T\led.obj)
+
+line level    source
+
+   1          # include<reg52.h>
+   2          # include<string.h>
+   3          # include ".\led_display_cfg.h"
+   4          # include ".\led_display.h"
+   5          
+   6          //**********定义全局变量************************
+   7          unsigned int num_1ms,num_2ms,num_1000ms;
+   8          unsigned char temp[6];
+   9          //**********定义中断初始化函数******************
+  10          void inter_init()
+  11          {
+  12   1              EA=1;//开总中断
+  13   1              ET0=1;//中断控制，允许定时器0中断
+  14   1              TMOD=0X01;//工作模式
+  15   1              TH0=(65536-1000)/256;//初值高
+  16   1              TL0=(65536-1000)%256;//初值低
+  17   1              TR0=1;   //启动定时器
+  18   1      }
+  19          void main()
+  20          {
+  21   1      
+  22   1              
+  23   1              unsigned char *str6;
+  24   1              inter_init();
+  25   1              LedDisplayInit(); //LED初始化，此例为空函数；
+  26   1              while(1)                                                          
+  27   1                      {
+  28   2      //*****************************************
+  29   2                      unsigned char sec,hou,min,hou_ge,hou_shi,min_shi,min_ge,sec_shi,sec_ge;
+  30   2                      if (num_1000ms>=950)
+  31   2                      {
+  32   3                              num_1000ms=0;
+  33   3                              if (sec<59)
+  34   3                                      {
+  35   4                                              sec++;
+  36   4                                      }
+  37   3                                      else
+  38   3                                              {
+  39   4                                                      sec=0;
+  40   4                                                      if (min<59)
+  41   4                                                              {
+  42   5                                                                      min++;
+  43   5                                                              }
+  44   4                                                              else
+  45   4                                                                      {
+  46   5                                                                              min=0;
+  47   5                                                                              if (hou<23)
+  48   5                                                                                      {
+  49   6                                                                                              hou++;
+  50   6                                                                                      }
+  51   5                                                                                      else
+  52   5                                                                                              {
+  53   6                                                                                                      hou=0;
+  54   6                                                                                              }
+C51 COMPILER V9.00   LED                                                                   03/03/2015 20:24:34 PAGE 2   
+
+  55   5                                                                      }
+  56   4                                              }
+  57   3                      hou_shi=hou/10;
+  58   3                      hou_ge=hou%10;
+  59   3                      min_shi=min/10;
+  60   3                      min_ge=min%10;
+  61   3                      sec_shi=sec/10;
+  62   3                      sec_ge=sec%10;
+  63   3      
+  64   3                      temp[0]='0'+hou_shi;
+  65   3                      temp[1]='0'+hou_ge;
+  66   3                      temp[2]='0'+min_shi;
+  67   3                      temp[3]='0'+min_ge;
+  68   3                      temp[4]='0'+sec_shi;
+  69   3                      temp[5]='0'+sec_ge;
+  70   3                      str6=&temp[0];
+  71   3                      LedDisplayPuts(str6);
+  72   3      
+  73   3                      }
+  74   2      
+  75   2      //**********************************************
+  76   2      
+  77   2      
+  78   2                              if (num_2ms>=2)
+  79   2                                      {
+  80   3                                              LedDisplayScan();       
+  81   3                                              num_2ms=0;
+  82   3                                      }
+  83   2      
+  84   2                      }
+  85   1      
+  86   1      }
+  87          void time()interrupt 1 using 1
+  88          {
+  89   1              TH0=(65536-1000)/256;   
+  90   1              TL0=(65536-1000)%256;
+  91   1              num_2ms++;
+  92   1              num_1000ms++;
+  93   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    223    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     12       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

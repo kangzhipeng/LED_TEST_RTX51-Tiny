@@ -1,38 +1,112 @@
-C51 COMPILER V9.00   LED_TEST                                                              03/03/2015 15:13:53 PAGE 1   
+C51 COMPILER V9.00   LED_TEST                                                              03/05/2015 22:21:41 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE LED_TEST
-OBJECT MODULE PLACED IN LED_TEST.OBJ
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE LED_TEST.C ROM(SMALL) BROWSE DEBUG OBJECTEXTEND
+OBJECT MODULE PLACED IN .\OUT\LED_TEST.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE SRC\LED_TEST.C ROM(SMALL) BROWSE DEBUG OBJECTEXTEND PRINT(.\LED_TEST.lst) O
+                    -BJECT(.\OUT\LED_TEST.obj)
 
 line level    source
 
-   1          #include  <rtx51tny.h>
-   2          
-   3          void xxa() _task_ 0
-   4          {
-   5   1              os_create_task(0);
-   6   1              os_create_task(1);
-   7   1              os_create_task(2);
-   8   1              os_delete_task(0);
-   9   1      
-  10   1      }
-  11          void clock() _task_ 1
-  12          {
-  13   1              os_wait(K_TMO,2,0);
-  14   1      }
-  15          void LED_display() _task_ 2
+   1          # include<reg52.h>
+   2          # include<string.h>
+   3          #include <rtx51tny.h>
+   4          
+   5          
+   6          #include "LED_TEST.H"
+   7          #include "DEV\led_display.h"
+   8          
+   9          unsigned int i;
+  10          unsigned int j,m,n;
+  11          
+  12          struct time ctime={22,21,0};
+  13          
+  14          void Init1() _task_ 0
+  15          
   16          {
-  17   1              os_wait(K_TMO,2,0);
-  18   1      }
+  17   1              LedDisplayInit();                 //驱动初始化
+  18   1              
+  19   1              os_create_task (1);
+  20   1              os_create_task (2);
+  21   1              os_create_task (3);
+  22   1              os_delete_task (0);
+  23   1      }
+  24          void LED_display() _task_ 1
+  25          {
+  26   1              //任务1：刷新数码管
+  27   1              while (1)
+  28   1              {
+  29   2      //              LedDisplayPuts(& ctime);
+  30   2                      LedDisplayScan();
+  31   2                       
+  32   2                      os_wait (K_TMO, 2, 0);
+  33   2              }       
+  34   1      }
+  35          void clock() _task_ 2
+  36          {  //任务2：时钟
+  37   1              while (1)
+  38   1              {
+  39   2                      if (++ ctime.sec == 60){
+  40   3                              ctime.sec = 0;
+  41   3                              if (++ ctime.min == 60) {
+  42   4                                      ctime.min = 0;
+  43   4                                      if (++ ctime.hour == 24){
+  44   5                                              ctime.hour = 0;
+  45   5                                      }
+  46   4                              }
+  47   3                      }
+  48   2                      LedDisplayBuf[0] = ctime.hour / 10;
+  49   2                      LedDisplayBuf[1] =      ctime.hour % 10;
+  50   2                      LedDisplayBuf[1] =      LedDisplayBuf[1] | 0x80;
+  51   2                      LedDisplayBuf[2] =      ctime.min / 10;
+  52   2                      LedDisplayBuf[3] =      ctime.min % 10;
+  53   2                      LedDisplayBuf[4] =      ctime.sec / 10;
+  54   2                      LedDisplayBuf[5] =      ctime.sec % 10;
+C51 COMPILER V9.00   LED_TEST                                                              03/05/2015 22:21:41 PAGE 2   
+
+  55   2                      os_wait (K_TMO, 50000, 0);
+  56   2                      os_wait (K_TMO, 50000, 0);
+  57   2                      os_wait (K_TMO, 50000, 0);
+  58   2                      os_wait (K_TMO, 50000, 0);
+  59   2                      os_wait (K_TMO, 50000, 0);
+  60   2                      os_wait (K_TMO, 50000, 0);
+  61   2                      os_wait (K_TMO, 50000, 0);
+  62   2                      os_wait (K_TMO, 50000, 0);
+  63   2                      os_wait (K_TMO, 50000, 0);
+  64   2                      os_wait (K_TMO, 50000, 0);
+  65   2                      os_wait (K_TMO, 50000, 0);
+  66   2                      os_wait (K_TMO, 50000, 0);
+  67   2              }
+  68   1      }
+  69          void LED_SS() _task_ 3
+  70          {       //发光二极管闪烁
+  71   1              unsigned int css=0x01;
+  72   1      
+  73   1              P1=0xFF;
+  74   1      
+  75   1              while (1)
+  76   1              {
+  77   2                      P1=css^0xFF;
+  78   2                      
+  79   2                      if (css==0x80){
+  80   3                              css=0X01;
+  81   3                      }
+  82   2                      else  {
+  83   3                      css<<=1;
+  84   3                      }
+  85   2      
+  86   2                      os_wait (K_TMO, 50000, 0);
+  87   2                      os_wait (K_TMO, 50000, 0);
+  88   2              }       
+  89   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     34    ----
+   CODE SIZE        =    285    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =     11       2
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

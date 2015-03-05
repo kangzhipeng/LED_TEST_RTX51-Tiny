@@ -1,0 +1,128 @@
+C51 COMPILER V9.00   LED_DISPLAY                                                           03/05/2015 22:21:41 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE LED_DISPLAY
+OBJECT MODULE PLACED IN .\OUT\led_display.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE DEV\led_display.c ROM(SMALL) BROWSE DEBUG OBJECTEXTEND PRINT(.\led_display.
+                    -lst) OBJECT(.\OUT\led_display.obj)
+
+line level    source
+
+   1          /****************************************Copyright (c)****************************************************
+   2          **                            kangzhipeng All 
+   3          **                                                                                         
+   4          **                            zhipeng.k@gmail.com
+   5          **
+   6          **--------------File Info---------------------------------------------------------------------------------
+   7          ** File name:               led_display.c
+   8          ** Latest modified Date:    2013-3-04
+   9          ** Latest Version:          1.0
+  10          ** Descriptions:            多位数码管动态程序文件
+  11          **--------------------------------------------------------------------------------------------------------
+  12          ** Created by:              zhipeng.k
+  13          ** Created date:            2013-03-04
+  14          ** Version:                 1.0
+  15          ** Descriptions:            The original version
+  16          **--------------------------------------------------------------------------------------------------------
+  17          ** Modified by:             
+  18          ** Modified date:           
+  19          ** Version:                 
+  20          ** Descriptions:            
+  21          *********************************************************************************************************/
+  22          # include<reg52.h>
+  23          # include<string.h>
+  24          # include "led_display_cfg.h"
+  25          # include "led_display.h"
+  26          
+  27          unsigned char LedDisplayBuf[6];
+  28          static unsigned char iIndex;
+  29          
+  30          char LedDisplayInit()
+  31          {
+  32   1              return 0;
+  33   1      }
+  34          /*******************************************************************************************************/
+  35          /* LedDisplay()
+  36          ** 八位数码管刷新程序，每次刷新一位
+  37          ** 该驱动不妥当，需要修改；P0应该只访问LedDisplayBuf[]即可，不应该加入太多嵌套。
+  38          ********************************************************************************************************/
+  39          
+  40          
+  41          void LedDisplayScan()
+  42          {
+  43   1              static unsigned char iIndex=0;
+  44   1              //***************************************
+  45   1              //消隐藏
+  46   1              wela=1;
+  47   1              P0=0xff;
+  48   1              wela=0;
+  49   1              //***************************************
+  50   1              dula=1;
+  51   1              P0=LedShowTable[LedDisplayBuf[iIndex]][1];
+  52   1              dula=0;
+  53   1              wela=1;
+  54   1              P0=SegTable[iIndex];
+C51 COMPILER V9.00   LED_DISPLAY                                                           03/05/2015 22:21:41 PAGE 2   
+
+  55   1              wela=0;
+  56   1      
+  57   1              if (iIndex==5) {
+  58   2                      iIndex=0;
+  59   2              }
+  60   1              else {
+  61   2                              iIndex++;
+  62   2              }
+  63   1      }
+  64          /*******************************************************************************************************/
+  65          /* LedDisplayPuts()
+  66          ** 将字符型数据放入显示缓存区LedDisplayBuf[]
+  67          ********************************************************************************************************/
+  68          char LedDisplayPuts(char * pcstr)
+  69          {
+  70   1              unsigned char i,j;
+  71   1              if (pcstr==NULL)
+  72   1                      {
+  73   2                        return -1;
+  74   2                      }
+  75   1              for (i=0;i<6;i++)       
+  76   1                      {
+  77   2                              if (* pcstr=='0')
+  78   2                                      {
+  79   3                                              LedDisplayBuf[i]=0;     
+  80   3                                      }
+  81   2                              if (* pcstr=='.')
+  82   2                                      {
+  83   3                                              i--;
+  84   3                                              LedDisplayBuf[i]=LedDisplayBuf[i]|0x80;
+  85   3                                      }
+  86   2                                      else
+  87   2                                              {
+  88   3                                                      for (j=0;LedShowTable[j][0]!=0;j++)
+  89   3                                                              {
+  90   4                                                                 if (LedShowTable[j][0]==* pcstr)
+  91   4                                                                              {
+  92   5                                                                                      LedDisplayBuf[i]= LedShowTable[j][1];
+  93   5                                                                                      break;
+  94   5                                                                              }
+  95   4                                                                              
+  96   4                                                              }
+  97   3                                                      pcstr++;
+  98   3                                              }
+  99   2                      }
+ 100   1                      return 0;
+ 101   1      }
+ 102          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    187    ----
+   CONSTANT SIZE    =     70    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

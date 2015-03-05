@@ -1,0 +1,6 @@
+".\OUT\LED_TEST.obj",
+".\OUT\STARTUP.obj",
+".\OUT\Conf_tny.obj",
+".\OUT\led_display.obj" 
+TO ".\OUT\LED_TEST" Rtx51Tiny 
+PRINT(".\LED_TEST.m51") RAMSIZE(256) 

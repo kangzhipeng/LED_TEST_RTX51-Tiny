@@ -1,33 +1,38 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        03/03/2015  15:13:54  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/05/2015  22:21:41  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, LED_TEST.obj, Conf_tny.obj TO LED_TEST RTX51TINY
+C:\KEIL\C51\BIN\BL51.EXE .\OUT\LED_TEST.obj, .\OUT\STARTUP.obj, .\OUT\Conf_tny.obj, .\OUT\led_display.obj TO .\OUT\LED_T
+>> EST RTX51TINY PRINT (.\LED_TEST.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
 
 
 INPUT MODULES INCLUDED:
-  STARTUP.obj (?C_STARTUP)
-  LED_TEST.obj (LED_TEST)
-  Conf_tny.obj (?RTX51_TINY_KERNAL)
+  .\OUT\LED_TEST.obj (LED_TEST)
+  .\OUT\STARTUP.obj (?C_STARTUP)
+  .\OUT\Conf_tny.obj (?RTX51_TINY_KERNAL)
+  .\OUT\led_display.obj (LED_DISPLAY)
   C:\KEIL\C51\LIB\RTX51TNY.LIB (?RTX51_TINY_OS_CREATE)
   C:\KEIL\C51\LIB\RTX51TNY.LIB (?RTX51_TINY_OS_DELETE)
   C:\KEIL\C51\LIB\RTX51TNY.LIB (?RTX51_TINY_OS_WAIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
 
 
-TASK TABLE OF MODULE:  LED_TEST (?C_STARTUP)
+TASK TABLE OF MODULE:  .\OUT\LED_TEST (LED_TEST)
 
 TASKID   PRIORITY   REG-BANK   SEGMENT NAME
 -------------------------------------------
-0        0          0          ?PR?XXA?LED_TEST
-1        0          0          ?PR?CLOCK?LED_TEST
-2        0          0          ?PR?LED_DISPLAY?LED_TEST
+0        0          0          ?PR?INIT1?LED_TEST
+1        0          0          ?PR?LED_DISPLAY?LED_TEST
+2        0          0          ?PR?CLOCK?LED_TEST
+3        0          0          ?PR?LED_SS?LED_TEST
 
 
 
-LINK MAP OF MODULE:  LED_TEST (?C_STARTUP)
+LINK MAP OF MODULE:  .\OUT\LED_TEST (LED_TEST)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -36,45 +41,171 @@ LINK MAP OF MODULE:  LED_TEST (?C_STARTUP)
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
             DATA    0008H     0005H     ABSOLUTE     
-            IDATA   000DH     0006H     UNIT         ?RTX?TASKSTATE?S
-            IDATA   0013H     0003H     UNIT         ?RTX?TASKSP?S
-                    0016H     000AH                  *** GAP ***
+            DATA    000DH     000BH     UNIT         ?DT?LED_TEST
+            DATA    0018H     0008H     UNIT         ?DT?LED_DISPLAY
             BIT     0020H.0   0000H.1   UNIT         ?RTX?BITS
                     0020H.1   0000H.7                *** GAP ***
-            IDATA   0021H     0001H     UNIT         ?STACK
+            DATA    0021H     0003H     UNIT         ?DT?_LEDDISPLAYPUTS?LED_DISPLAY
+            DATA    0024H     0002H     UNIT         _DATA_GROUP_
+            IDATA   0026H     0008H     UNIT         ?RTX?TASKSTATE?S
+            IDATA   002EH     0004H     UNIT         ?RTX?TASKSP?S
+            IDATA   0032H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0006H     UNIT         ?RTX?TASKENT?S
-                    0009H     0002H                  *** GAP ***
+            CODE    0003H     0008H     UNIT         ?RTX?TASKENT?S
             CODE    000BH     0003H     ABSOLUTE     
             CODE    000EH     0293H     UNIT         ?RTX?CODE
-            CODE    02A1H     0010H     INBLOCK      ?PR?XXA?LED_TEST
-            CODE    02B1H     000CH     UNIT         ?C_C51STARTUP
-            CODE    02BDH     0009H     INBLOCK      ?PR?CLOCK?LED_TEST
-            CODE    02C6H     0009H     INBLOCK      ?PR?LED_DISPLAY?LED_TEST
+            CODE    02A1H     00C2H     INBLOCK      ?PR?CLOCK?LED_TEST
+            CODE    0363H     008CH     UNIT         ?C_C51STARTUP
+            CODE    03EFH     0080H     INBLOCK      ?PR?_LEDDISPLAYPUTS?LED_DISPLAY
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 2
+
+
+            CODE    046FH     0046H     UNIT         ?CO?LED_DISPLAY
+            CODE    04B5H     003CH     INBLOCK      ?PR?LED_SS?LED_TEST
+            CODE    04F1H     0038H     INBLOCK      ?PR?LEDDISPLAYSCAN?LED_DISPLAY
+            CODE    0529H     0019H     UNIT         ?C?LIB_CODE
+            CODE    0542H     0012H     INBLOCK      ?PR?INIT1?LED_TEST
+            CODE    0554H     000DH     INBLOCK      ?PR?LED_DISPLAY?LED_TEST
+            CODE    0561H     0009H     UNIT         ?C_INITSEG
+            CODE    056AH     0003H     INBLOCK      ?PR?LEDDISPLAYINIT?LED_DISPLAY
 
 
 
-OVERLAY MAP OF MODULE:   LED_TEST (?C_STARTUP)
+OVERLAY MAP OF MODULE:   .\OUT\LED_TEST (LED_TEST)
 
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 2
+SEGMENT                                   DATA_GROUP 
+  +--> CALLED SEGMENT                   START    LENGTH
+-------------------------------------------------------
+?PR?INIT1?LED_TEST                      -----    -----
+  +--> ?PR?LEDDISPLAYINIT?LED_DISPLAY
+
+*** NEW ROOT ***************************************************
+
+?PR?LED_DISPLAY?LED_TEST                -----    -----
+  +--> ?PR?LEDDISPLAYSCAN?LED_DISPLAY
+
+?PR?LEDDISPLAYSCAN?LED_DISPLAY          -----    -----
+  +--> ?CO?LED_DISPLAY
+
+*** NEW ROOT ***************************************************
+
+?PR?LED_SS?LED_TEST                     0024H    0002H
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                           -----    -----
+  +--> ?C_INITSEG
 
 
-SEGMENT
-  +--> CALLED SEGMENT
----------------------
 
-
-SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
+SYMBOL TABLE OF MODULE:  .\OUT\LED_TEST (LED_TEST)
 
   VALUE           TYPE          NAME
   ----------------------------------
 
+  -------         MODULE        LED_TEST
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  C:02A1H         PUBLIC        clock
+  D:000DH         PUBLIC        ctime
+  D:00B8H         PUBLIC        IP
+  C:0554H         PUBLIC        LED_display
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0542H         PUBLIC        Init1
+  C:04B5H         PUBLIC        LED_SS
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 3
+
+
+  D:00C8H         PUBLIC        T2CON
+  D:0010H         PUBLIC        i
+  D:0012H         PUBLIC        j
+  D:0014H         PUBLIC        m
+  D:0016H         PUBLIC        n
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          INIT1
+  C:0542H         LINE#         14
+  C:0542H         LINE#         17
+  C:0544H         LINE#         19
+  C:0548H         LINE#         20
+  C:054CH         LINE#         21
+  C:0550H         LINE#         22
+  -------         ENDPROC       INIT1
+  -------         PROC          LED_DISPLAY
+  C:0554H         LINE#         24
+  C:0554H         LINE#         27
+  C:0554H         LINE#         28
+  C:0554H         LINE#         30
+  C:0556H         LINE#         32
+  C:055FH         LINE#         33
+  -------         ENDPROC       LED_DISPLAY
+  -------         PROC          CLOCK
+  C:02A1H         LINE#         35
+  C:02A1H         LINE#         37
+  C:02A1H         LINE#         38
+  C:02A1H         LINE#         39
+  C:02A8H         LINE#         40
+  C:02ABH         LINE#         41
+  C:02B2H         LINE#         42
+  C:02B5H         LINE#         43
+  C:02BCH         LINE#         44
+  C:02BFH         LINE#         45
+  C:02BFH         LINE#         46
+  C:02BFH         LINE#         47
+  C:02BFH         LINE#         48
+  C:02C7H         LINE#         49
+  C:02D0H         LINE#         50
+  C:02D3H         LINE#         51
+  C:02DBH         LINE#         52
+  C:02E4H         LINE#         53
+  C:02ECH         LINE#         54
+  C:02F5H         LINE#         55
+  C:02FEH         LINE#         56
+  C:0307H         LINE#         57
+  C:0310H         LINE#         58
+  C:0319H         LINE#         59
+  C:0322H         LINE#         60
+  C:032BH         LINE#         61
+  C:0334H         LINE#         62
+  C:033DH         LINE#         63
+  C:0346H         LINE#         64
+  C:034FH         LINE#         65
+  C:0358H         LINE#         66
+  C:0361H         LINE#         67
+  -------         ENDPROC       CLOCK
+  -------         PROC          LED_SS
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 4
+
+
+  -------         DO            
+  D:0024H         SYMBOL        css
+  -------         ENDDO         
+  C:04B5H         LINE#         69
+  C:04B5H         LINE#         71
+  C:04BBH         LINE#         73
+  C:04BEH         LINE#         75
+  C:04BEH         LINE#         76
+  C:04BEH         LINE#         77
+  C:04C3H         LINE#         79
+  C:04CBH         LINE#         80
+  C:04D0H         LINE#         81
+  C:04D2H         LINE#         82
+  C:04D2H         LINE#         83
+  C:04DDH         LINE#         84
+  C:04DDH         LINE#         86
+  C:04E6H         LINE#         87
+  C:04EFH         LINE#         88
+  -------         ENDPROC       LED_SS
+  -------         ENDMOD        LED_TEST
+
   -------         MODULE        ?C_STARTUP
-  C:02B1H         SEGMENT       ?C_C51STARTUP
-  I:0021H         SEGMENT       ?STACK
+  C:0363H         SEGMENT       ?C_C51STARTUP
+  I:0032H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -83,7 +214,7 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:02B4H         SYMBOL        IDATALOOP
+  C:0366H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -92,49 +223,27 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:02B1H         SYMBOL        STARTUP1
+  C:0363H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:02B1H         LINE#         133
-  C:02B3H         LINE#         134
-  C:02B4H         LINE#         135
-  C:02B5H         LINE#         136
-  C:02B7H         LINE#         185
-  C:02BAH         LINE#         196
+  C:0363H         LINE#         133
+  C:0365H         LINE#         134
+  C:0366H         LINE#         135
+  C:0367H         LINE#         136
+  C:0369H         LINE#         185
+  C:036CH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
-
-  -------         MODULE        LED_TEST
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  C:02BDH         PUBLIC        clock
-  C:02C6H         PUBLIC        LED_display
-  C:02A1H         PUBLIC        xxa
-  -------         PROC          XXA
-  C:02A1H         LINE#         3
-  C:02A1H         LINE#         5
-  C:02A5H         LINE#         6
-  C:02A9H         LINE#         7
-  C:02ADH         LINE#         8
-  -------         ENDPROC       XXA
-  -------         PROC          CLOCK
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 3
-
-
-  C:02BDH         LINE#         11
-  C:02BDH         LINE#         13
-  -------         ENDPROC       CLOCK
-  -------         PROC          LED_DISPLAY
-  C:02C6H         LINE#         15
-  C:02C6H         LINE#         17
-  -------         ENDPROC       LED_DISPLAY
-  -------         ENDMOD        LED_TEST
 
   -------         MODULE        ?RTX51_TINY_KERNAL
   C:0003H         SEGMENT       ?RTX?TASKENT?S
-  I:0013H         SEGMENT       ?RTX?TASKSP?S
-  I:000DH         SEGMENT       ?RTX?TASKSTATE?S
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 5
+
+
+  I:002EH         SEGMENT       ?RTX?TASKSP?S
+  I:0026H         SEGMENT       ?RTX?TASKSTATE?S
   B:0020H.0       SEGMENT       ?RTX?BITS
   C:000EH         SEGMENT       ?RTX?CODE
   C:0059H         PUBLIC        ?RTX?SET_ISR
@@ -144,8 +253,8 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   N:00FFH         PUBLIC        ?RTX_RAMTOP
   C:0003H         PUBLIC        ?RTX_TASKENTRY
   C:012FH         PUBLIC        ?RTX_TASKIDX
-  I:0013H         PUBLIC        ?RTX_TASKSP
-  I:000DH         PUBLIC        ?RTX_TASKSTATUS
+  I:002EH         PUBLIC        ?RTX_TASKSP
+  I:0026H         PUBLIC        ?RTX_TASKSTATUS
   C:00F6H         PUBLIC        MAIN
   C:005CH         PUBLIC        OS_SWITCH_TASK
   C:0063H         SYMBOL        ?C0001
@@ -159,7 +268,7 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:00BAH         SYMBOL        ?C0015
   C:00C5H         SYMBOL        ?C0016
   N:0000H         SYMBOL        ?RTX51_TINY_KERNAL
-  N:D8F0H         SYMBOL        ?RTX_CLOCK
+  N:FC18H         SYMBOL        ?RTX_CLOCK
   B:0020H.0       SYMBOL        ?RTX_ISR_SIG
   N:0008H         SYMBOL        ?RTX_REGISTERBANK
   D:000AH         SYMBOL        ?RTX_SAVEACC
@@ -179,9 +288,6 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:0037H         SYMBOL        CHECKSTACK
   N:0000H         SYMBOL        CODE_BANKING
   N:0001H         SYMBOL        CPU_IDLE_CODE
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 4
-
-
   D:0083H         SYMBOL        DPH
   D:0082H         SYMBOL        DPL
   B:00A8H.7       SYMBOL        EA
@@ -193,9 +299,12 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   N:0014H         SYMBOL        FREE_STACK
   C:0012H         SYMBOL        HW_TIMER
   D:00A8H         SYMBOL        IE
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 6
+
+
   B:0088H.1       SYMBOL        IE0
   B:0088H.3       SYMBOL        IE1
-  N:2710H         SYMBOL        INT_CLOCK
+  N:03E8H         SYMBOL        INT_CLOCK
   N:0001H         SYMBOL        INT_REGBANK
   B:0088H.0       SYMBOL        IT0
   B:0088H.2       SYMBOL        IT1
@@ -223,7 +332,7 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:00ECH         SYMBOL        SIGNALON
   N:0004H         SYMBOL        SIG_EVENT
   D:0081H         SYMBOL        SP
-  I:000EH         SYMBOL        TASKSTATE
+  I:0027H         SYMBOL        TASKSTATE
   D:0088H         SYMBOL        TCON
   B:0088H.5       SYMBOL        TF0
   B:0088H.7       SYMBOL        TF1
@@ -232,16 +341,13 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:00E8H         SYMBOL        TIMEOUTON
   C:0013H         SYMBOL        TIMERINT
   C:0043H         SYMBOL        TIMERLOOP
-  I:000DH         SYMBOL        TIMERVAL
+  I:0026H         SYMBOL        TIMERVAL
   N:0000H         SYMBOL        TIMESHARING
   D:008AH         SYMBOL        TL0
   D:008BH         SYMBOL        TL1
   D:0089H         SYMBOL        TMOD
   N:0008H         SYMBOL        TMO_EVENT
   B:0088H.4       SYMBOL        TR0
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 5
-
-
   B:0088H.6       SYMBOL        TR1
   C:000BH         LINE#         271
   C:000EH         LINE#         279
@@ -253,6 +359,9 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:001CH         LINE#         303
   C:001DH         LINE#         305
   C:001FH         LINE#         306
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 7
+
+
   C:0021H         LINE#         307
   C:0023H         LINE#         308
   C:0025H         LINE#         309
@@ -299,9 +408,6 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:0067H         LINE#         439
   C:006AH         LINE#         440
   C:006DH         LINE#         441
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 6
-
-
   C:0070H         LINE#         444
   C:0073H         LINE#         445
   C:0075H         LINE#         446
@@ -313,6 +419,9 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:007FH         LINE#         464
   C:0080H         LINE#         465
   C:0082H         LINE#         468
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 8
+
+
   C:0084H         LINE#         470
   C:0086H         LINE#         471
   C:0088H         LINE#         472
@@ -359,9 +468,6 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:00C5H         LINE#         543
   C:00C7H         LINE#         544
   C:00C9H         LINE#         545
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 7
-
-
   C:00CAH         LINE#         546
   C:00CBH         LINE#         548
   C:00CDH         LINE#         549
@@ -373,6 +479,9 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:00D7H         LINE#         564
   C:00D9H         LINE#         565
   C:00DAH         LINE#         571
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 9
+
+
   C:00DDH         LINE#         572
   C:00E0H         LINE#         576
   C:00E2H         LINE#         577
@@ -419,8 +528,108 @@ SYMBOL TABLE OF MODULE:  LED_TEST (?C_STARTUP)
   C:012EH         LINE#         676
   -------         ENDMOD        ?RTX51_TINY_KERNAL
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      03/03/2015  15:13:54  PAGE 8
+  -------         MODULE        LED_DISPLAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:056AH         PUBLIC        LedDisplayInit
+  C:04AFH         PUBLIC        SegTable
+  D:00A8H         PUBLIC        IE
+  D:0019H         PUBLIC        LedDisplayBuf
+  D:00B8H         PUBLIC        IP
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 10
 
 
-Program Size: data=23.1 xdata=0 code=717
-LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+  C:03EFH         PUBLIC        _LedDisplayPuts
+  C:046FH         SYMBOL        LedShowTable
+  B:00A0H.6       PUBLIC        dula
+  B:00A0H.7       PUBLIC        wela
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:001FH         SYMBOL        iIndex
+  D:00C8H         PUBLIC        T2CON
+  C:04F1H         PUBLIC        LedDisplayScan
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          LEDDISPLAYINIT
+  C:056AH         LINE#         30
+  C:056AH         LINE#         31
+  C:056AH         LINE#         32
+  C:056CH         LINE#         33
+  -------         ENDPROC       LEDDISPLAYINIT
+  -------         PROC          LEDDISPLAYSCAN
+  -------         DO            
+  D:0018H         SYMBOL        iIndex
+  -------         ENDDO         
+  C:04F1H         LINE#         41
+  C:04F1H         LINE#         42
+  C:04F1H         LINE#         46
+  C:04F3H         LINE#         47
+  C:04F6H         LINE#         48
+  C:04F8H         LINE#         50
+  C:04FAH         LINE#         51
+  C:050FH         LINE#         52
+  C:0511H         LINE#         53
+  C:0513H         LINE#         54
+  C:051BH         LINE#         55
+  C:051DH         LINE#         57
+  C:0522H         LINE#         58
+  C:0525H         LINE#         59
+  C:0526H         LINE#         60
+  C:0526H         LINE#         61
+  C:0528H         LINE#         62
+  C:0528H         LINE#         63
+  -------         ENDPROC       LEDDISPLAYSCAN
+  -------         PROC          _LEDDISPLAYPUTS
+  D:0021H         SYMBOL        pcstr
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  -------         ENDDO         
+  C:03EFH         LINE#         68
+  C:03F5H         LINE#         69
+  C:03F5H         LINE#         71
+  C:03FAH         LINE#         72
+  C:03FAH         LINE#         73
+  C:03FDH         LINE#         74
+  C:03FDH         LINE#         75
+  C:03FFH         LINE#         76
+  C:03FFH         LINE#         77
+  C:040BH         LINE#         78
+  C:040BH         LINE#         79
+  C:0411H         LINE#         80
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2015  22:21:41  PAGE 11
+
+
+  C:0411H         LINE#         81
+  C:0415H         LINE#         82
+  C:0415H         LINE#         83
+  C:0416H         LINE#         84
+  C:041EH         LINE#         85
+  C:0420H         LINE#         87
+  C:0420H         LINE#         88
+  C:0433H         LINE#         89
+  C:0433H         LINE#         90
+  C:0440H         LINE#         91
+  C:0440H         LINE#         92
+  C:0455H         LINE#         93
+  C:0457H         LINE#         94
+  C:0457H         LINE#         96
+  C:045AH         LINE#         97
+  C:0465H         LINE#         98
+  C:0465H         LINE#         99
+  C:046CH         LINE#         100
+  C:046EH         LINE#         101
+  -------         ENDPROC       _LEDDISPLAYPUTS
+  -------         ENDMOD        LED_DISPLAY
+
+  -------         MODULE        ?C?CLDPTR
+  C:0529H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEDDISPLAYPUTS?LED_DISPLAY
+
+Program Size: data=50.1 xdata=0 code=1389
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
